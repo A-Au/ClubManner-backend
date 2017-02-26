@@ -29,6 +29,8 @@ This assumes you have your PostgreSQL database running and are on MacOS.
 
     $ ./manage.py runserver
 
+7. Navigate to `localhost:8000/product/get` and login at the top right and you should get an HTTP response code of 200. Or use something like [Postman](https://www.getpostman.com/) with the endpoint `localhost:8000/product/get` and with your user credentials in the authorization tab
+
 
 ## Requirements
 
