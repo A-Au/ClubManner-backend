@@ -2,11 +2,36 @@
 
 ## Get Started
 
-1. Need to have `pip` installed.
-2. Run the following command to install the required Python packages
+This assumes you have your PostgreSQL database running and are on MacOS.
+
+1. Run the following command to install the required Python packages
     
     $ pip install setup/install
 
-3. Activate the virtual environment by running the follwing command
+2. Activate the virtual environment by running the follwing command
 
     $ source clubmannerenv/bin/activate
+
+3. Create the database `djangoadmin` in PostgreSQL and run the following command
+
+    $ psql -U postgres -c "create role djangouser login password 'password'"
+
+4. Make migrations, this should create/set up the database
+
+    $ ./manage.py makemigrations
+    $ ./manage.py migrate
+
+5. Create an authorized user for yourself
+
+    $ ./manage.py create superuser
+
+6. Start the local server
+
+    $ ./manage.py runserver
+
+
+## Requirements
+
++ Python 3.6
++ pip
++ PostgreSQL 9.4 or newer
