@@ -8,6 +8,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 
 
 class PantsFitting(models.Model):
@@ -19,18 +20,27 @@ class PantsFitting(models.Model):
         db_table = 'pants_fitting'
 
 
+class ProductCategories(models.Model):
+    category_name = models.CharField(max_length=20, blank=True, unique=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'product_categories'
+
+
 class Products(models.Model):
-    #id = models.AutoField(primary_key=True, unique=True, blank=True, null=False)
     name = models.CharField(max_length=50, blank=True, null=True)
     brand = models.CharField(max_length=50, blank=True, null=True)
-
+    price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
+    sku = models.CharField(max_length=50, blank=True, null=True)
+    category = models.ForeignKey(ProductCategories, models.DO_NOTHING, blank=True, null=True)
+    size_data = JSONField()
     class Meta:
         managed = True
         db_table = 'products'
 
 
 class Provinces(models.Model):
-    #province_id = models.AutoField(unique=True)
     province_name = models.CharField(unique=True, max_length=26, blank=True, null=True)
 
     class Meta:
@@ -78,7 +88,7 @@ class Users(models.Model):
     first_name = models.CharField(max_length=32, blank=True, null=True)
     last_name = models.CharField(max_length=32, blank=True, null=True)
     password = models.CharField(max_length=100, blank=True, null=True)
-    email = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(max_length=254, blank=True, null=True)
     phone = models.CharField(max_length=10, blank=True, null=True)
     address = models.CharField(max_length=50, blank=True, null=True)
     postal_code = models.CharField(max_length=6, blank=True, null=True)
