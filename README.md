@@ -6,7 +6,7 @@ This assumes you have your PostgreSQL database running and are on MacOS.
 
 1. Run the following command to install the required Python packages
     
-    $ pip install setup/install
+    $ pip install requirements.txt
 
 2. Activate the virtual environment by running the follwing command
 
