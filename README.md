@@ -51,18 +51,16 @@ This assumes you have your PostgreSQL database running and are on MacOS.
     "name": "Tname",
     "brand": "Tbrand",
     "price": 999.99,
-    "size_data": {
-        "data": [{
-            "size": "42",
-            "quantity": 10000
-        }, {
-            "size": "36",
-            "quantity": 100
-        }, {
-            "size": "32",
-            "quantity": 0
-        }]
-    },
+    "size_data": [{
+        "size": "42",
+        "quantity": 10000
+    }, {
+        "size": "36",
+        "quantity": 100
+    }, {
+        "size": "32",
+        "quantity": 0
+    }],
     "sku": "ABC123"
 }
 ```
