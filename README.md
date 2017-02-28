@@ -41,3 +41,28 @@ This assumes you have your PostgreSQL database running and are on MacOS.
 + Python 3.6
 + pip
 + PostgreSQL 9.4 or newer
+
+## Examples
+
++ Sample POST to `/product/get/` (will need to change this to something else)
+
+```JSON
+{
+    "name": "Tname",
+    "brand": "Tbrand",
+    "price": 999.99,
+    "size_data": {
+        "data": [{
+            "size": "42",
+            "quantity": 10000
+        }, {
+            "size": "36",
+            "quantity": 100
+        }, {
+            "size": "32",
+            "quantity": 0
+        }]
+    },
+    "sku": "ABC123"
+}
+```
