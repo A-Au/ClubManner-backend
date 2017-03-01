@@ -11,18 +11,40 @@ from django.db import models
 from django.contrib.postgres.fields import JSONField
 
 
+class BrandsManager(models.Manager):
+    def get_by_natural_key(self, brand_name):
+        return self.get(brand_name = brand_name)
+
+
+class Brands(models.Model):
+    #store_id = models.AutoField(unique=True, blank=True, null=True)
+    brand_name = models.CharField(unique=True, max_length=50, blank=True, null=False)
+
+    class Meta:
+        managed = True
+        db_table = 'brands'
+
+
+class PantsFittingManager(models.Manager):
+    def get_by_natural_key(self, pfit_name):
+        return self.get(pfit_name=pfit_name)
+
+
 class PantsFitting(models.Model):
     #fit_id = models.AutoField(unique=True, blank=True, null=True)
     pfit_name = models.CharField(max_length=20, blank=True, null=False, unique=True)
-
     class Meta:
         managed = True
         db_table = 'pants_fitting'
 
 
+class ProductCategoriesManager(models.Manager):
+    def get_by_natural_key(self, category_name):
+        return self.get(category_name = category_name)
+
+
 class ProductCategories(models.Model):
     category_name = models.CharField(max_length=20, blank=True, unique=True, null=True)
-
     class Meta:
         managed = True
         db_table = 'product_categories'
@@ -30,7 +52,7 @@ class ProductCategories(models.Model):
 
 class Products(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
-    brand = models.CharField(max_length=50, blank=True, null=True)
+    brand = models.ForeignKey(Brands, models.DO_NOTHING, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     sku = models.CharField(max_length=50, blank=True, null=True)
     category = models.ForeignKey(ProductCategories, models.DO_NOTHING, blank=True, null=True)
@@ -38,6 +60,11 @@ class Products(models.Model):
     class Meta:
         managed = True
         db_table = 'products'
+
+
+class ProvincesManager(models.Manager):
+    def get_by_natural_key(self, province_name):
+        return self.get(province_name = province_name)
 
 
 class Provinces(models.Model):
@@ -48,13 +75,22 @@ class Provinces(models.Model):
         db_table = 'provinces'
 
 
+class ShirtFittingManager(models.Manager):
+    def get_by_natural_key(self, sfit_name):
+        return self.get(sfit_name = sfit_name)
+
+
 class ShirtFitting(models.Model):
     #fit_id = models.AutoField(unique=True, blank=True, null=True)
     sfit_name = models.CharField(unique=True, max_length=100, blank=True, null=False)
-
     class Meta:
         managed = True
         db_table = 'shirt_fitting'
+
+
+class SizeManager(models.Manager):
+    def get_by_natural_key(self, size_name):
+        return self.get(size_name = size_name)
 
 
 class Size(models.Model):
@@ -66,6 +102,11 @@ class Size(models.Model):
         db_table = 'size'
 
 
+class StoresManager(models.Manager):
+    def get_by_natural_key(self, store_name):
+        return self.get(store_name = store_name)
+
+
 class Stores(models.Model):
     #store_id = models.AutoField(unique=True, blank=True, null=True)
     store_name = models.CharField(unique=True, max_length=50, blank=True, null=False)
@@ -73,6 +114,11 @@ class Stores(models.Model):
     class Meta:
         managed = True
         db_table = 'stores'
+
+
+class StylesManager(models.Manager):
+    def get_by_natural_key(self, style_name):
+        return self.get(style_name = style_name)
 
 
 class Styles(models.Model):
