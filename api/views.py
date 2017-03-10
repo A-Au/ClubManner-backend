@@ -1,39 +1,35 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from api.models import Products, Users, PantsFitting, ProductCategories, Provinces, ShirtFitting, Size, Styles, Brands, Stores
+from api.models import Product, User, PantsFitting, ProductCategory, Province, ShirtFitting, Size, Style, Brand, Store
 from rest_framework import viewsets
-from api.serializers import ProductsSerializer, BrandsSerializer, UsersSerializer, PantsFittingSerializer, ProductCategoriesSerializer, ProvincesSerializer, ShirtFittingSerializer, SizeSerializer, StoresSerializer, StylesSerializer
+from api.serializers import ProductSerializer, BrandSerializer, UserSerializer, PantsFittingSerializer, ProductCategorySerializer, ProvinceSerializer, ShirtFittingSerializer, SizeSerializer, StoreSerializer, StyleSerializer
 
 
-# Create your views here.
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
-class ProductsViewSet(viewsets.ModelViewSet):
+class ProductViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
     queryset = Products.objects.all()
-    serializer_class = ProductsSerializer
+    serializer_class = ProductSerializer
 
 
-class BrandsViewSet(viewsets.ModelViewSet):
+class BrandViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
-    queryset = Brands.objects.all()
-    serializer_class = BrandsSerializer
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
 
 
-class UsersViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
-    queryset = Users.objects.all()
-    serializer_class = UsersSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
-class PantsFitViewSet(viewsets.ModelViewSet):
+class PantFitViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
@@ -41,19 +37,19 @@ class PantsFitViewSet(viewsets.ModelViewSet):
     serializer_class = PantsFittingSerializer
 
 
-class ProvincesViewSet(viewsets.ModelViewSet):
+class ProvinceViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
-    queryset = Users.objects.all()
-    serializer_class = ProvincesSerializer
+    queryset = User.objects.all()
+    serializer_class = ProvinceSerializer
 
 
 class ShirtFitViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
-    queryset = Users.objects.all()
+    queryset = User.objects.all()
     serializer_class = ShirtFittingSerializer
 
 
@@ -61,29 +57,29 @@ class StoresViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
-    queryset = Users.objects.all()
-    serializer_class = StoresSerializer
+    queryset = User.objects.all()
+    serializer_class = StoreSerializer
 
 
 class StylesViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
-    queryset = Users.objects.all()
-    serializer_class = StylesSerializer
+    queryset = User.objects.all()
+    serializer_class = StyleSerializer
 
 
-class ProductCategoriesViewSet(viewsets.ModelViewSet):
+class ProductCategoryViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
-    queryset = Users.objects.all()
-    serializer_class = ProductCategoriesSerializer
+    queryset = User.objects.all()
+    serializer_class = ProductCategorySerializer
 
 
 class SizeViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
-    queryset = Users.objects.all()
+    queryset = User.objects.all()
     serializer_class = SizeSerializer

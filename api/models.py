@@ -11,18 +11,18 @@ from django.db import models
 from django.contrib.postgres.fields import JSONField
 
 
-class BrandsManager(models.Manager):
+class BrandManager(models.Manager):
     def get_by_natural_key(self, brand_name):
         return self.get(brand_name = brand_name)
 
 
-class Brands(models.Model):
+class Brand(models.Model):
     #store_id = models.AutoField(unique=True, blank=True, null=True)
     brand_name = models.CharField(unique=True, max_length=50, blank=True, null=False)
 
     class Meta:
         managed = True
-        db_table = 'brands'
+        db_table = 'brand'
 
 
 class PantsFittingManager(models.Manager):
@@ -38,19 +38,19 @@ class PantsFitting(models.Model):
         db_table = 'pants_fitting'
 
 
-class ProductCategoriesManager(models.Manager):
+class ProductCategoryManager(models.Manager):
     def get_by_natural_key(self, category_name):
         return self.get(category_name = category_name)
 
 
-class ProductCategories(models.Model):
+class ProductCategory(models.Model):
     category_name = models.CharField(max_length=20, blank=True, unique=True, null=True)
     class Meta:
         managed = True
-        db_table = 'product_categories'
+        db_table = 'product_category'
 
 
-class Products(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
     brand = models.ForeignKey(Brands, models.DO_NOTHING, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
@@ -59,7 +59,7 @@ class Products(models.Model):
     size_data = JSONField()
     class Meta:
         managed = True
-        db_table = 'products'
+        db_table = 'product'
 
 
 class ProvincesManager(models.Manager):
@@ -67,12 +67,12 @@ class ProvincesManager(models.Manager):
         return self.get(province_name = province_name)
 
 
-class Provinces(models.Model):
+class Province(models.Model):
     province_name = models.CharField(unique=True, max_length=26, blank=True, null=True)
 
     class Meta:
         managed = True
-        db_table = 'provinces'
+        db_table = 'province'
 
 
 class ShirtFittingManager(models.Manager):
@@ -102,35 +102,35 @@ class Size(models.Model):
         db_table = 'size'
 
 
-class StoresManager(models.Manager):
+class StoreManager(models.Manager):
     def get_by_natural_key(self, store_name):
         return self.get(store_name = store_name)
 
 
-class Stores(models.Model):
+class Store(models.Model):
     #store_id = models.AutoField(unique=True, blank=True, null=True)
     store_name = models.CharField(unique=True, max_length=50, blank=True, null=False)
 
     class Meta:
         managed = True
-        db_table = 'stores'
+        db_table = 'store'
 
 
-class StylesManager(models.Manager):
+class StyleManager(models.Manager):
     def get_by_natural_key(self, style_name):
         return self.get(style_name = style_name)
 
 
-class Styles(models.Model):
+class Style(models.Model):
     #style_id = models.AutoField(unique=True)
     style_name = models.CharField(unique=True, max_length=50, blank=True, null=False)
 
     class Meta:
         managed = True
-        db_table = 'styles'
+        db_table = 'style'
 
 
-class Users(models.Model):
+class User(models.Model):
     first_name = models.CharField(max_length=32, blank=True, null=True)
     last_name = models.CharField(max_length=32, blank=True, null=True)
     password = models.CharField(max_length=100, blank=True, null=True)
@@ -157,12 +157,12 @@ class Users(models.Model):
     shoes_max_price = models.FloatField(blank=True, null=True)
     acces_min_price = models.FloatField(blank=True, null=True)
     acces_max_price = models.FloatField(blank=True, null=True)
-    style_pref = models.ForeignKey(Styles, models.DO_NOTHING, db_column='style_pref', blank=True, null=True)
-    store_pref = models.ForeignKey(Stores, models.DO_NOTHING, db_column='store_pref', blank=True, null=True)
+    style_pref = models.ForeignKey(Style, models.DO_NOTHING, db_column='style_pref', blank=True, null=True)
+    store_pref = models.ForeignKey(Store, models.DO_NOTHING, db_column='store_pref', blank=True, null=True)
     price_min = models.FloatField(blank=True, null=True)
     price_max = models.FloatField(blank=True, null=True)
     referral = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = True
-        db_table = 'users'
+        db_table = 'user'

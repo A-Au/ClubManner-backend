@@ -1,16 +1,16 @@
-from api.models import Products, Users, PantsFitting, ProductCategories, Provinces, ShirtFitting, Size, Styles, Brands, Stores
+from api.models import Product, User, PantsFitting, ProductCategory, Province, ShirtFitting, Size, Style, Brand, Store
 from rest_framework import serializers
 
 
-class ProductsSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Products
+        model = Product
         fields = ('id', 'name', 'brand', 'price', 'size_data', 'sku', 'category_id')
 
 
-class UsersSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Users
+        model = User
         fields = ('first_name', 
             'last_name', 
             'password', 
@@ -49,21 +49,21 @@ class PantsFittingSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'pfit_name')
 
 
-class BrandsSerializer(serializers.HyperlinkedModelSerializer):
+class BrandSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Brands
+        model = Brand
         fields = ('id', 'brand_name')
 
 
-class ProductCategoriesSerializer(serializers.HyperlinkedModelSerializer):
+class ProductCategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = ProductCategories
+        model = ProductCategory
         fields = ('id', 'category_name')
 
 
-class ProvincesSerializer(serializers.HyperlinkedModelSerializer):
+class ProvinceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Provinces
+        model = Province
         fields = ('id', 'province_name')
 
 
@@ -79,13 +79,13 @@ class SizeSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'size_name')
 
 
-class StoresSerializer(serializers.HyperlinkedModelSerializer):
+class StoreSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Stores
+        model = Store
         fields = ('id', 'store_name')
 
 
-class StylesSerializer(serializers.HyperlinkedModelSerializer):
+class StyleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Styles
+        model = Style
         fields = ('id', 'style_name')
