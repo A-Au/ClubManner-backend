@@ -9,7 +9,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
-    queryset = Products.objects.all()
+    queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
 
@@ -29,7 +29,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-class PantFitViewSet(viewsets.ModelViewSet):
+class PantsFitViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
@@ -53,7 +53,7 @@ class ShirtFitViewSet(viewsets.ModelViewSet):
     serializer_class = ShirtFittingSerializer
 
 
-class StoresViewSet(viewsets.ModelViewSet):
+class StoreViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """
@@ -61,7 +61,7 @@ class StoresViewSet(viewsets.ModelViewSet):
     serializer_class = StoreSerializer
 
 
-class StylesViewSet(viewsets.ModelViewSet):
+class StyleViewSet(viewsets.ModelViewSet):
     """
     API Endpoint
     """

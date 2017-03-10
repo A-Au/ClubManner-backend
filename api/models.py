@@ -52,10 +52,10 @@ class ProductCategory(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
-    brand = models.ForeignKey(Brands, models.DO_NOTHING, blank=True, null=True)
+    brand = models.ForeignKey(Brand, models.DO_NOTHING, blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     sku = models.CharField(max_length=50, blank=True, null=True)
-    category = models.ForeignKey(ProductCategories, models.DO_NOTHING, blank=True, null=True)
+    category = models.ForeignKey(ProductCategory, models.DO_NOTHING, blank=True, null=True)
     size_data = JSONField()
     class Meta:
         managed = True
@@ -139,7 +139,7 @@ class User(models.Model):
     address = models.CharField(max_length=50, blank=True, null=True)
     postal_code = models.CharField(max_length=6, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
-    province = models.ForeignKey(Provinces, models.DO_NOTHING, blank=True, null=True)
+    province = models.ForeignKey(Province, models.DO_NOTHING, blank=True, null=True)
     country = models.CharField(max_length=50, blank=True, null=True)
     birth_month = models.IntegerField(blank=True, null=True)
     birth_day = models.IntegerField(blank=True, null=True)

@@ -3,15 +3,15 @@ from api import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'products', views.ProductsViewSet)
-router.register(r'productcats', views.ProductCategoriesViewSet)
-router.register(r'brands', views.BrandsViewSet)
+router.register(r'products', views.ProductViewSet)
+router.register(r'productcats', views.ProductCategoryViewSet)
+router.register(r'brands', views.BrandViewSet)
 router.register(r'pantsfit', views.PantsFitViewSet)
-router.register(r'users', views.UsersViewSet)
-router.register(r'provinces', views.ProvincesViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'provinces', views.ProvinceViewSet)
 router.register(r'shirtfit', views.ShirtFitViewSet)
-router.register(r'stores', views.StoresViewSet)
-router.register(r'styles', views.StylesViewSet)
+router.register(r'stores', views.StoreViewSet)
+router.register(r'styles', views.StyleViewSet)
 router.register(r'size', views.SizeViewSet)
 
 
