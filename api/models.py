@@ -8,6 +8,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+
 from django.contrib.postgres.fields import JSONField
 
 
@@ -166,3 +167,8 @@ class User(models.Model):
     class Meta:
         managed = True
         db_table = 'user'
+
+class UserForm(ModelForm):
+    agree_term = forms.BooleanField(required=True, label='Agree to terms')
+    class Meta:
+        model = User
