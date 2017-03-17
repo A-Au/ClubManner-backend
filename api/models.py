@@ -189,5 +189,14 @@ class SignupForm(ModelForm):
 class User(object):
     class Meta:
         model = User
+        fields = ['first_name', 
+                  'last_name', 
+                  'password', 
+                  'email', 
+                  'address', 
+                  'postal_code',
+                  'city',
+                  'province',
+                  'country']
             
         
