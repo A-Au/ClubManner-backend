@@ -25,7 +25,7 @@ SECRET_KEY = 'm94&1h_8$w7txwnytusoi-)t)s&i_3e_#llcr5y)_bu&t*%zvg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['clubmanner.com']
 
 
 # Application definition
