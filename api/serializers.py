@@ -2,28 +2,26 @@ from api.models import Product, User, PantsFitting, ProductCategory, Province, S
 from rest_framework import serializers
 
 
-class ProductSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ('id', 'name', 'brand', 'price', 'size_data', 'sku', 'category_id')
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    #province = serializers.StringRelatedField(many=False)
     class Meta:
         model = User
         fields = ('first_name', 
             'last_name', 
             'password', 
             'email', 
-            'phone', 
             'address',
             'postal_code',
             'city',
             'province',
             'country',
-            'birth_month',
-            'birth_day',
-            'birth_year',
+            'birthday',
             'pants_fit',
             'shirt_fit',
             'shirt_size',
@@ -43,49 +41,49 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'referral')
 
 
-class PantsFittingSerializer(serializers.HyperlinkedModelSerializer):
+class PantsFittingSerializer(serializers.ModelSerializer):
     class Meta:
         model = PantsFitting
         fields = ('id', 'pfit_name')
 
 
-class BrandSerializer(serializers.HyperlinkedModelSerializer):
+class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = ('id', 'brand_name')
 
 
-class ProductCategorySerializer(serializers.HyperlinkedModelSerializer):
+class ProductCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductCategory
         fields = ('id', 'category_name')
 
 
-class ProvinceSerializer(serializers.HyperlinkedModelSerializer):
+class ProvinceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Province
         fields = ('id', 'province_name')
 
 
-class ShirtFittingSerializer(serializers.HyperlinkedModelSerializer):
+class ShirtFittingSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShirtFitting
         fields = ('id', 'sfit_name')
 
 
-class SizeSerializer(serializers.HyperlinkedModelSerializer):
+class SizeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Size
         fields = ('id', 'size_name')
 
 
-class StoreSerializer(serializers.HyperlinkedModelSerializer):
+class StoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Store
         fields = ('id', 'store_name')
 
 
-class StyleSerializer(serializers.HyperlinkedModelSerializer):
+class StyleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Style
         fields = ('id', 'style_name')

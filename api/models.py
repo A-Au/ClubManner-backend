@@ -8,7 +8,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from django.forms import ModelForm
+from django import forms
 from django.contrib.postgres.fields import JSONField
 
 
@@ -70,10 +71,13 @@ class ProvincesManager(models.Manager):
 
 class Province(models.Model):
     province_name = models.CharField(unique=True, max_length=26, blank=True, null=True)
-
+    
     class Meta:
         managed = True
         db_table = 'province'
+
+    def __str__(self):
+        return '%s' % (self.province_name)
 
 
 class ShirtFittingManager(models.Manager):
@@ -136,17 +140,14 @@ class User(models.Model):
     last_name = models.CharField(max_length=32, blank=True, null=True)
     password = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
-    phone = models.CharField(max_length=10, blank=True, null=True)
     address = models.CharField(max_length=50, blank=True, null=True)
     postal_code = models.CharField(max_length=6, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
-    province = models.ForeignKey(Province, models.DO_NOTHING, blank=True, null=True)
+    province = models.ForeignKey(Province, models.DO_NOTHING, db_column='province_name', blank=True, null=True)
     country = models.CharField(max_length=50, blank=True, null=True)
-    birth_month = models.IntegerField(blank=True, null=True)
-    birth_day = models.IntegerField(blank=True, null=True)
-    birth_year = models.IntegerField(blank=True, null=True)
-    pants_fit = models.ForeignKey(PantsFitting, models.DO_NOTHING, blank=True, null=True)
-    shirt_fit = models.ForeignKey(ShirtFitting, models.DO_NOTHING, blank=True, null=True)
+    birthday = models.DateField(null=True)
+    pants_fit = models.ForeignKey(PantsFitting, models.DO_NOTHING, db_column='pfit_name', blank=True, null=True)
+    shirt_fit = models.ForeignKey(ShirtFitting, models.DO_NOTHING, db_column='sfit_name', blank=True, null=True)
     shirt_size = models.ForeignKey(Size, models.DO_NOTHING, db_column='shirt_size', blank=True, null=True)
     pants_size = models.IntegerField(blank=True, null=True)
     shoe_size = models.FloatField(blank=True, null=True)
@@ -163,12 +164,30 @@ class User(models.Model):
     price_min = models.FloatField(blank=True, null=True)
     price_max = models.FloatField(blank=True, null=True)
     referral = models.CharField(max_length=50, blank=True, null=True)
+    stripe_token = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = True
         db_table = 'user'
 
-class UserForm(ModelForm):
+class SignupForm(ModelForm):
     agree_term = forms.BooleanField(required=True, label='Agree to terms')
     class Meta:
         model = User
+        fields = ['first_name', 
+                  'last_name', 
+                  'password', 
+                  'email', 
+                  'address', 
+                  'postal_code',
+                  'city',
+                  'province',
+                  'country',
+                  'birthday',
+                  'referral']
+
+class User(object):
+    class Meta:
+        model = User
+            
+        
