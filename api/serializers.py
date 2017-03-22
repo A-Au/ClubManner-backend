@@ -1,21 +1,24 @@
-from api.models import Product, User, PantsFitting, ProductCategory, Province, ShirtFitting, Size, Style, Brand, Store
+from api.models import Product, Profile, PantsFitting, ProductCategory, Province, ShirtFitting, Size, Style, Brand, Store
 from rest_framework import serializers
 
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'name', 'brand', 'price', 'size_data', 'sku', 'category_id')
+        fields = ('id', 
+                  'name', 
+                  'brand', 
+                  'price', 
+                  'size_data', 
+                  'sku', 
+                  'category_id')
 
 
-class UserSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
     #province = serializers.StringRelatedField(many=False)
     class Meta:
-        model = User
-        fields = ('first_name', 
-            'last_name', 
-            'password', 
-            'email', 
+        model = Profile
+        fields = ('user',
             'address',
             'postal_code',
             'city',

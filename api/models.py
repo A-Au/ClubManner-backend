@@ -11,6 +11,9 @@ from django.db import models
 from django.forms import ModelForm
 from django import forms
 from django.contrib.postgres.fields import JSONField
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class BrandManager(models.Manager):
@@ -135,11 +138,8 @@ class Style(models.Model):
         db_table = 'style'
 
 
-class User(models.Model):
-    first_name = models.CharField(max_length=32, blank=True, null=True)
-    last_name = models.CharField(max_length=32, blank=True, null=True)
-    password = models.CharField(max_length=100, blank=True, null=True)
-    email = models.EmailField(max_length=254, blank=True, null=True)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=50, blank=True, null=True)
     postal_code = models.CharField(max_length=6, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
@@ -168,25 +168,21 @@ class User(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'user'
+        db_table = 'profile'
+        #app_label = 'django.contrib.auth'
 
-class SignupForm(ModelForm):
-    agree_term = forms.BooleanField(required=True, label='Agree to terms')
-    class Meta:
-        model = User
-        fields = ['first_name', 
-                  'last_name', 
-                  'password', 
-                  'email', 
-                  'address', 
-                  'postal_code',
-                  'city',
-                  'province',
-                  'country',
-                  'birthday',
-                  'referral']
 
-class User(object):
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+
+'''class UserUpdateForm(object):
     class Meta:
         model = User
         fields = ['first_name', 
@@ -199,4 +195,4 @@ class User(object):
                   'province',
                   'country']
             
-        
+        '''

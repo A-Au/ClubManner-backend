@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>REGISTER TEST</title>
+</head>
+<body>
+<form method="post" action=".">
+	<table>
+		{% csrf_token %}
+		{{ form.as_table }}
+	</table>
+	<input type="submit" name="Register">
+</form>
+<a href="/api/login">Login</a>
+</body>
+</html>
