@@ -25,7 +25,7 @@ SECRET_KEY = 'm94&1h_8$w7txwnytusoi-)t)s&i_3e_#llcr5y)_bu&t*%zvg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['clubmanner.com']
+'''ALLOWED_HOSTS = ['clubmanner.com']'''
 
 
 # Application definition
@@ -63,7 +63,7 @@ ROOT_URLCONF = 'clubmanner.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/Users/andrewau/github/ClubManner-backend/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,3 +140,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL='/api/home/'
