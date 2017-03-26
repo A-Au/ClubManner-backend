@@ -1,4 +1,4 @@
-from api.models import Product, Profile, PantsFitting, ProductCategory, Province, ShirtFitting, Size, Style, Brand, Store
+from model.models import Product, Profile, PantsFitting, ProductCategory, Province, ShirtFitting, Size, Style, Brand, Store
 from rest_framework import serializers
 
 
