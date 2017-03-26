@@ -55,9 +55,7 @@ def home(request):
             login(request, user)
             return render('success.html')
     else:
-        return render('home.html', {
-            'user': request.user
-        })
+        return render(request, 'home.html', {'user': request.user})
 
 
 '''def get_signup(request):

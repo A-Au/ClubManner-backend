@@ -7,7 +7,7 @@ from .forms import *
 
 urlpatterns = {
     url(r'^login/$', authviews.login, {'template_name': 'login.html', 'authentication_form': LoginForm}),
-    url(r'^home$', home),
+    url(r'^home/$', home),
     url(r'^logout/$', logout_page),
     url(r'^register/$', register),
     url(r'^details/$', register_details),
