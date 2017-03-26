@@ -10,7 +10,7 @@ urlpatterns = {
     url(r'^home$', home),
     url(r'^logout/$', logout_page),
     url(r'^register/$', register),
-    url(r'details/$', register_details),
+    url(r'^details/$', register_details),
     url(r'^success/$', register_success),
     url(r'^home/$', home),
 }
