@@ -37,7 +37,7 @@ def register_details(request):
 
 
 def register_success(request):
-    return render('success.html')
+    return render(request, 'success.html')
 
 
 def logout_page(request):
@@ -45,17 +45,9 @@ def logout_page(request):
     return HttpResponseRedirect('/form/home/')
 
 
-@login_required(login_url='/form/login/')
-def home(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return render('success.html')
-    else:
-        return render(request, 'home.html', {'user': request.user})
+@login_required(login_url = '/form/login/')
+def get_home(request):
+    return render(request, 'home.html', { 'user': request.user })
 
 
 '''def get_signup(request):
@@ -83,4 +75,15 @@ def get_userUpdate(request):
     else:
         userUpdateForm = ProfileUpdateForm()
 
-    return render(request, 'profile.html', {'form': userUpdateForm})'''
+    return render(request, 'profile.html', {'form': userUpdateForm})
+    
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return render(request, 'success.html')
+    else:
+    '''
