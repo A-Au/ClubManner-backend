@@ -37,6 +37,9 @@ class LoginForm(AuthenticationForm):
 
 class SignupForm(ModelForm):
     agree_term = forms.BooleanField(required=True, label='Agree to terms')
+    birthday = forms.DateField(widget=forms.DateInput(format=('%d-%m-%Y'), 
+                               attrs={'class':'myDateClass', 
+                               'placeholder':'Select a date'}))
     class Meta:
         model = Profile
         fields = ['address', 
@@ -45,4 +48,11 @@ class SignupForm(ModelForm):
                   'province',
                   'country',
                   'birthday',
+                  'pants_fit',
+                  'shirt_fit',
+                  'shirt_size',
+                  'pants_size',
+                  'shoe_size',
+                  'style_pref',
+                  'store_pref',
                   'referral']
